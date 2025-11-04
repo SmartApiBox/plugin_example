@@ -142,6 +142,10 @@ public class HelloWorldController {
         this.helloWorldService = helloWorldService;
     }
 
+    public HelloWorldController() {
+        this.helloWorldService = null;
+    }
+
     @GetMapping("/hello")
     @Operation(
         summary = "Say Hello",
