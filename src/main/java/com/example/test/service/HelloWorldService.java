@@ -3,7 +3,6 @@ package com.example.test.service;
 import com.smartapibox.sdk.GPTClient;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class HelloWorldService {
 

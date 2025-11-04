@@ -9,57 +9,70 @@ import com.smartapibox.plugin.SmartApiPlugin;
 import java.util.List;
 
 /**
- * Esempio di implementazione di un plugin per SmartApiBox.
- * Questo plugin espone un'API REST semplice che restituisce un messaggio "Hello" tramite GPT.
+ * Example implementation of a SmartApiBox plugin.
+ * <p>
+ * This plugin exposes a simple REST API endpoint that returns a "Hello" message generated via GPT.
+ * It demonstrates how to define plugin metadata, register components, and expose controllers
+ * dynamically through the SmartApiBox platform.
+ * </p>
  */
 public class HelloWorldPlugin implements SmartApiPlugin {
 
     /**
-     * Restituisce i metadati del plugin, utilizzati da SmartApiBox per:
-     * - descrivere il plugin nel catalogo
-     * - mostrare il nome, descrizione, versione, autore
-     * - documentare l'endpoint di esempio principale (path e metodo HTTP)
+     * Returns the metadata of this plugin.
+     * <p>
+     * The metadata is used by SmartApiBox to:
+     * <ul>
+     *   <li>Describe the plugin in the public catalog</li>
+     *   <li>Display its name, description, version, and author</li>
+     *   <li>Document the main exposed endpoint (path and HTTP method)</li>
+     * </ul>
+     * </p>
      *
-     * @return metadata del plugin
+     * @return the {@link PluginMetadata} describing this plugin
      */
     @Override
     public PluginMetadata getMetadata() {
         return new PluginMetadata(
-                "HelloWorldPlugin",                         // Nome identificativo
-                "A simple Hello World plugin",              // Descrizione breve
-                "v1",                                       // Versione
-                "Stefania",                                 // Autore o contributor
-                "/api/v1/plugin/external/hello",            // Endpoint principale (path)
-                PluginMetadata.HttpMethod.GET               // Metodo HTTP dell'endpoint principale
+                "HelloWorldPlugin",                   // Unique plugin name
+                "A simple Hello World plugin",              // Short description
+                "1.0.0",                                    // Plugin Version
+                "Your Name",                                // Author or contributor
+                "/api/v1/plugin/external/hello",            // Main endpoint path
+                PluginMetadata.HttpMethod.GET               // HTTP method for the endpoint
         );
     }
 
     /**
-     * Metodo chiamato da SmartApiBox al caricamento del plugin.
-     * Qui è possibile:
-     * - registrare bean (es. service, controller, utilità)
-     * - inizializzare risorse o configurazioni
+     * Called by SmartApiBox when the plugin is loaded.
+     * <p>
+     * This method is the entry point for registering beans, controllers, or utility components.
+     * All registered beans become part of the Spring context and can use dependency injection.
+     * </p>
      *
-     * I bean devono essere registrati con il registrar per permettere a Spring
-     *     di gestire automaticamente l'injection delle dipendenze.
-     *
-     * @param registrar oggetto fornito da SmartApiBox per registrare componenti
+     * @param registrar the {@link PluginRegistrar} provided by SmartApiBox to register components
      */
     @Override
     public void onLoad(final PluginRegistrar registrar) {
-        registrar.registerBean(HelloWorldService.class);     // Service con logica GPT
-        registrar.registerBean(HelloWorldController.class);  // Controller REST esposto
+        registrar.registerBean(HelloWorldService.class);     // Service containing GPT logic
+        registrar.registerController(HelloWorldController.class);  // Exposed REST controller
     }
 
     /**
-     * Restituisce la lista dei controller REST esposti dal plugin.
-     * Serve per:
-     * - la registrazione dinamica del controller
-     * - la generazione automatica della documentazione OpenAPI
+     * Returns the list of REST controllers exposed by this plugin.
+     * <p>
+     * SmartApiBox uses this information to:
+     * <ul>
+     *   <li>Dynamically register the controller during plugin loading</li>
+     *   <li>Automatically generate OpenAPI documentation for the endpoints</li>
+     * </ul>
+     * </p>
+     * <p>
+     * Controllers must be annotated with {@code @RestController} and use standard
+     * Spring MVC mapping annotations such as {@code @RequestMapping} or {@code @GetMapping}.
+     * </p>
      *
-     * I controller devono essere annotati con @RestController e @RequestMapping/@GetMapping ecc.
-     *
-     * @return lista delle classi controller
+     * @return a list of controller classes exposed by the plugin
      */
     @Override
     public List<Class<?>> getRestControllers() {

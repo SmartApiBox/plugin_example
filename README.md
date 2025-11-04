@@ -57,7 +57,7 @@ Minimal example:
     <dependency>
       <groupId>com.smartapibox</groupId>
       <artifactId>plugin-api-sdk</artifactId>
-      <version>0.0.4</version>
+      <version>0.0.5</version>
     </dependency>
 
     <!-- Provided by host (do not bundle these in the plugin jar) -->

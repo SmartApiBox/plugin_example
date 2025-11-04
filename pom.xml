@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.smartapibox</groupId>
             <artifactId>plugin-api-sdk</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.5</version>
         </dependency>
 
         <!-- PROVIDED LIBS: slf4j, jakarta, swagger-annotations, lombok -->
@@ -66,7 +66,7 @@
         <profile>
             <id>local-test</id>
             <dependencies>
-                <!-- Dipendenze solo per testing locale -->
+                <!-- Local testing dependency -->
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-web</artifactId>
@@ -74,7 +74,7 @@
                 <dependency>
                     <groupId>com.smartapibox</groupId>
                     <artifactId>plugin-api-sdk</artifactId>
-                    <version>0.0.4</version>
+                    <version>0.0.5</version>
                 </dependency>
             </dependencies>
         </profile>
