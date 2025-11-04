@@ -19,13 +19,6 @@ public class HelloWorldController {
         this.helloWorldService = helloWorldService;
     }
 
-    /**
-     * Default empty constructor for Spring.
-     */
-    public HelloWorldController() {
-        this.helloWorldService = null;
-    }
-
     @GetMapping("/hello")
     @Operation(
             summary = "Say Hello",
