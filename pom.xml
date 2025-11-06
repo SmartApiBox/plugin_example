@@ -12,85 +12,73 @@
     <description>Sample SmartApiBox Plugin - Hello World</description>
 
     <properties>
-        <!-- Set Java version consistent with the host project -->
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <!-- Main project SDK -->
-        <dependency>
-            <groupId>com.smartapibox</groupId>
-            <artifactId>plugin-api-sdk</artifactId>
-            <version>0.0.5</version>
-        </dependency>
-
-        <!-- PROVIDED LIBS: slf4j, jakarta, swagger-annotations, lombok -->
-
-        <!-- Spring Core (for ApplicationContext) -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Spring Web (for @RestController, @GetMapping) -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Swagger Annotations -->
-        <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- SpringDoc OpenAPI (only annotations, not runtime) -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-
-    </dependencies>
-
-    <profiles>
-        <profile>
-            <id>local-test</id>
-            <dependencies>
-                <!-- Local testing dependency -->
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>com.smartapibox</groupId>
-                    <artifactId>plugin-api-sdk</artifactId>
-                    <version>0.0.5</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-
+    <!-- SmartApiBox BOM import - handle runtime lib versions -->
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.2.5</version>
+                <groupId>com.smartapibox</groupId>
+                <artifactId>smartapibox-runtime-bom</artifactId>
+                <version>0.0.6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <!-- SmartApiBox SDK -->
+        <dependency>
+            <groupId>com.smartapibox</groupId>
+            <artifactId>plugin-api-sdk</artifactId>
+            <version>0.0.6</version>
+        </dependency>
+
+        <!-- Provided libs from SmartApiBox -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Local profile for test -->
+    <profiles>
+        <profile>
+            <id>local-test</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
-            <!-- Compiler Plugin -->
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -100,7 +88,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Resources Plugin (to include META-INF/services) -->
+            <!-- Resources (necessario per META-INF/services) -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>

@@ -44,68 +44,106 @@ Unzip and import the Maven project in your IDE.
 Minimal example:
 
 ```xml
-<project ...>
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <properties>
-    <maven.compiler.release>17</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <groupId>com.example.test</groupId>
+    <artifactId>hello-world-plugin</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
 
-  <dependencies>
-    <!-- SDK required for compilation -->
-    <dependency>
-      <groupId>com.smartapibox</groupId>
-      <artifactId>plugin-api-sdk</artifactId>
-      <version>0.0.5</version>
-    </dependency>
+    <name>HelloWorldPlugin</name>
+    <description>Sample SmartApiBox Plugin - Hello World</description>
 
-    <!-- Provided by host (do not bundle these in the plugin jar) -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <scope>provided</scope>
-    </dependency>
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <scope>provided</scope>
-    </dependency>
+    <!-- SmartApiBox BOM import - handle runtime lib versions -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.smartapibox</groupId>
+                <artifactId>smartapibox-runtime-bom</artifactId>
+                <version>0.0.6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-    <!-- Annotations (provided) -->
-    <dependency>
-      <groupId>io.swagger.core.v3</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
-
-  <!-- Optional: import Spring Boot BOM for local-test profile -->
-  <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.2.5</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  <profiles>
-    <profile>
-      <id>local-test</id>
-      <dependencies>
-        <!-- With the BOM you can omit explicit version -->
+        <!-- SmartApiBox SDK -->
         <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.smartapibox</groupId>
+            <artifactId>plugin-api-sdk</artifactId>
+            <version>0.0.6</version>
         </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
+
+        <!-- Provided libs from SmartApiBox -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Local profile for test -->
+    <profiles>
+        <profile>
+            <id>local-test</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
+            <!-- Resources (necessario per META-INF/services) -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 ```
 
