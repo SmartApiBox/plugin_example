@@ -64,14 +64,12 @@ Minimal example:
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>6.1.5</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>6.1.5</version>
       <scope>provided</scope>
     </dependency>
 
@@ -79,7 +77,6 @@ Minimal example:
     <dependency>
       <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-annotations</artifactId>
-      <version>2.2.20</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
