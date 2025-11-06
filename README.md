@@ -304,6 +304,6 @@ This allows you to verify both the REST logic and GPT prompt responses before pu
 ## Implementation notes for plugin authors
 
 - Prefer to register classes (`registrar.registerBean(Class)`), not instances, when you need DI.
-- Do not bundle Spring core libs inside the plugin JAR (they are `provided`).
+- Do not bundle libs inside the plugin JAR (they are `provided`). If you need to include a library that’s not listed, you can fill the form request in the [SmartApiBox support portal](https://smartapibox.com/plugin-development-guide). 
 - The host will always mount controllers under `/api/v1/plugin/external` — leave the developer path as their "logical" path; the host prepends the global prefix during registration.
 - If you need a plugin-local configuration file, keep it under `src/main/resources` and read via classpath.
