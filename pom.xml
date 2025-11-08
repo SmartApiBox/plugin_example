@@ -22,7 +22,15 @@
             <dependency>
                 <groupId>com.smartapibox</groupId>
                 <artifactId>smartapibox-runtime-bom</artifactId>
-                <version>0.0.8</version>
+                <version>0.0.9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.3.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -34,7 +42,7 @@
         <dependency>
             <groupId>com.smartapibox</groupId>
             <artifactId>plugin-api-sdk</artifactId>
-            <version>0.0.8</version>
+            <version>0.0.9</version>
         </dependency>
 
         <!-- Provided libs from SmartApiBox -->
@@ -61,6 +69,14 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <!-- Local profile for test -->
@@ -71,6 +87,12 @@
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-web</artifactId>
+                    <version>3.3.4</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-web</artifactId>
                 </dependency>
             </dependencies>
         </profile>

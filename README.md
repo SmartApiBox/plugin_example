@@ -68,7 +68,15 @@ Minimal example:
             <dependency>
                 <groupId>com.smartapibox</groupId>
                 <artifactId>smartapibox-runtime-bom</artifactId>
-                <version>0.0.8</version>
+                <version>0.0.9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.3.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -80,7 +88,7 @@ Minimal example:
         <dependency>
             <groupId>com.smartapibox</groupId>
             <artifactId>plugin-api-sdk</artifactId>
-            <version>0.0.8</version>
+            <version>0.0.9</version>
         </dependency>
 
         <!-- Provided libs from SmartApiBox -->
@@ -107,6 +115,14 @@ Minimal example:
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <!-- Local profile for test -->
@@ -117,6 +133,12 @@ Minimal example:
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-web</artifactId>
+                    <version>3.3.4</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-web</artifactId>
                 </dependency>
             </dependencies>
         </profile>
@@ -308,7 +330,7 @@ This allows the host `ServiceLoader` to discover your plugin inside the JAR.
 
 ### 5) Local test & build
 
-- Local compile & test (uses `local-test` profile if present):
+- Local compile & test (uses `local-test` profile):
 
 ```bash
 mvn clean install -Plocal-test
