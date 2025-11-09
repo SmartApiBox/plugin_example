@@ -3,6 +3,7 @@ package com.example.test;
 import com.example.test.service.HelloWorldService;
 import com.smartapibox.sdk.GPTClient;
 import com.smartapibox.sdk.factory.GPTClientFactory;
+import com.smartapibox.sdk.util.EnvLoader;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +23,8 @@ public class HelloWorldServiceTest {
 
     @Test
     void sayHello_shouldReturnMyPluginResponse() {
-
-        final GPTClient gptClient = GPTClientFactory.live("live_xxx");
+        EnvLoader.load();
+        final GPTClient gptClient = GPTClientFactory.live("live_00fd50be-ef6f-479f-b479-af33c9f06fee");
         final HelloWorldService service = new HelloWorldService(gptClient);
         final String result = service.sayHello();
 

@@ -68,7 +68,7 @@ Minimal example:
             <dependency>
                 <groupId>com.smartapibox</groupId>
                 <artifactId>smartapibox-runtime-bom</artifactId>
-                <version>0.0.9</version>
+                <version>0.0.11</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -88,7 +88,7 @@ Minimal example:
         <dependency>
             <groupId>com.smartapibox</groupId>
             <artifactId>plugin-api-sdk</artifactId>
-            <version>0.0.9</version>
+            <version>0.0.11</version>
         </dependency>
 
         <!-- Provided libs from SmartApiBox -->
