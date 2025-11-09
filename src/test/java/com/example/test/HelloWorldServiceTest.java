@@ -24,7 +24,7 @@ public class HelloWorldServiceTest {
     @Test
     void sayHello_shouldReturnMyPluginResponse() {
         EnvLoader.load();
-        final GPTClient gptClient = GPTClientFactory.live("live_00fd50be-ef6f-479f-b479-af33c9f06fee");
+        final GPTClient gptClient = GPTClientFactory.live("live_xxx");
         final HelloWorldService service = new HelloWorldService(gptClient);
         final String result = service.sayHello();
 
